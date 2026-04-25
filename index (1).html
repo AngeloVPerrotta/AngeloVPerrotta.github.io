@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angelo Perrotta — Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --font-sans: 'IBM Plex Sans', sans-serif;
+            --font-serif: 'IBM Plex Serif', serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            color: #222;
+            background: #fff;
+        }
+
+        /* Navigation */
+        .navbar {
+            border-bottom: 1px solid #ddd;
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #000;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: #666;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: #000;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 2px solid #000;
+        }
+
+        .profile-pic {
+            width: 200px;
+            height: 200px;
+            border-radius: 0;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            border: 1.5px solid #000;
+            background: linear-gradient(135deg, #f5f5f5 0%, #d8d8d8 100%);
+            display: inline-block;
+        }
+
+        .profile-section h1 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .role-title {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .bio-content {
+            max-width: 650px;
+            margin: 0 auto 1.5rem;
+            text-align: left;
+        }
+
+        .bio-content p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 0.8rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: #000;
+            text-decoration: none;
+            border-bottom: 1px solid #ccc;
+            transition: all 0.2s;
+            padding-bottom: 2px;
+        }
+
+        .social-link:hover {
+            border-bottom: 1px solid #000;
+            background-color: #f0f0f0;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid #000;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+            margin-top: 3rem;
+        }
+
+        .award-institution {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: #666;
+            background: #f5f5f5;
+            padding: 0.15rem 0.5rem;
+            border-radius: 3px;
+            margin-left: 0;
+        }
+
+        /* Project Grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .project-card {
+            border: 1px solid #eee;
+            background: #fff;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            border-color: #999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .image-container {
+            height: 180px;
+            width: 100%;
+            overflow: hidden;
+            border-bottom: 1px solid #eee;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: filter 0.3s, transform 0.3s, opacity 0.3s;
+            opacity: 0.9;
+        }
+
+        .project-card:hover .project-img {
+            filter: grayscale(0%);
+            transform: scale(1.02);
+            opacity: 1;
+        }
+
+        /* SVG visual placeholders */
+        .visual-svg {
+            width: 100%;
+            height: 100%;
+            filter: grayscale(100%);
+            transition: filter 0.4s ease, transform 0.4s ease;
+            opacity: 0.85;
+        }
+
+        .project-card:hover .visual-svg {
+            filter: grayscale(0%);
+            transform: scale(1.02);
+            opacity: 1;
+        }
+
+        .card-content {
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .project-card h3 {
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            line-height: 1.3;
+            color: #000;
+        }
+
+        .project-meta {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: #666;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .project-desc {
+            font-size: 0.85rem;
+            color: #333;
+            line-height: 1.5;
+            margin-bottom: 0.8rem;
+        }
+
+        .methods-section {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: #444;
+            background: #f8f8f8;
+            padding: 0.8rem;
+            margin-top: 0.8rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+            border-left: 2px solid #ddd;
+        }
+
+        .methods-section strong {
+            color: #000;
+        }
+
+        .project-links {
+            margin-top: auto;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            padding-top: 1rem;
+        }
+
+        .text-link {
+            color: #000;
+            text-decoration: none;
+            margin-right: 1rem;
+            border-bottom: 1px solid #ccc;
+            transition: all 0.2s;
+        }
+
+        .text-link:hover {
+            border-bottom: 1px solid #000;
+            background-color: #f0f0f0;
+        }
+
+        /* Research Items */
+        .research-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .research-item {
+            border-left: 3px solid #000;
+            padding-left: 1.5rem;
+        }
+
+        .research-item h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .research-item .meta {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 0.3rem;
+            display: block;
+        }
+
+        .research-item p {
+            font-size: 0.92rem;
+            color: #333;
+            margin-top: 0.6rem;
+            margin-bottom: 0.6rem;
+            line-height: 1.6;
+        }
+
+        /* Freelance Web Work — compact list */
+        .freelance-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .freelance-item {
+            border: 1px solid #eee;
+            padding: 1rem 1.2rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .freelance-item:hover {
+            border-color: #999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .freelance-item h4 {
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .freelance-item .label {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .freelance-item a {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: #000;
+            text-decoration: none;
+            border-bottom: 1px solid #ccc;
+            transition: all 0.2s;
+        }
+
+        .freelance-item a:hover {
+            border-bottom: 1px solid #000;
+            background-color: #f0f0f0;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid #ddd;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            padding-bottom: 1rem;
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: #888;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .nav-menu {
+                gap: 1rem;
+            }
+            .nav-link {
+                font-size: 0.78rem;
+            }
+            .container {
+                padding: 2rem 1.2rem;
+            }
+            .profile-section h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Angelo Perrotta</a>
+            <ul class="nav-menu">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#research" class="nav-link">Research</a></li>
+                <li><a href="#freelance" class="nav-link">Web</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- ============== PROFILE ============== -->
+        <section class="profile-section" id="about">
+            <!-- Replace src with your photo. For now, gradient placeholder. -->
+            <div class="profile-pic" aria-label="Profile photo placeholder"></div>
+
+            <h1>Angelo Perrotta</h1>
+            <p class="role-title">AI Agent Developer &nbsp;|&nbsp; Systems Engineering — UAI, Buenos Aires</p>
+
+            <div class="bio-content">
+                <p>
+                    I'm a third-year <strong>Systems Engineering</strong> undergraduate at Universidad Abierta Interamericana and an <strong>AI Agent Developer</strong> at <strong>Botmaker</strong>, Latin America's largest conversational platform. I work at the intersection of conversational AI, mathematics education, and physical robotics — shipping production chatbots, prototyping vision-guided robots at the CAETI lab, and teaching Algebra and Calculus as a lab assistant.
+                </p>
+                <p>
+                    I'm currently building <strong>AlgorIA</strong>, an educational chatbot validated by the Systems Engineering Director for integration into UAI's program, and I co-author research at the university. I unwind by analyzing chess games — which is exactly why I ended up building a robot that plays them.
+                </p>
+            </div>
+
+            <div class="social-links">
+                <a href="mailto:perrottangelo340@gmail.com" class="social-link">Email</a>
+                <a href="https://github.com/AngeloVPerrotta" class="social-link" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.linkedin.com/in/angelo-perrotta/" class="social-link" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://www.youtube.com/@angelovp505" class="social-link" target="_blank" rel="noopener">YouTube</a>
+            </div>
+        </section>
+
+        <!-- ============== SELECTED PROJECTS ============== -->
+        <section id="projects">
+            <h2 class="section-title">Selected Projects</h2>
+
+            <div class="project-grid">
+
+                <!-- AlgorIA -->
+                <div class="project-card">
+                    <div class="image-container">
+                        <svg class="visual-svg" viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="400" height="180" fill="#1a1a1a"/>
+                            <g fill="none" stroke="#9be3a8" stroke-width="1.2" opacity="0.85">
+                                <rect x="40" y="35" width="130" height="38" rx="6"/>
+                                <rect x="60" y="80" width="170" height="38" rx="6"/>
+                                <rect x="200" y="125" width="160" height="38" rx="6"/>
+                            </g>
+                            <g font-family="IBM Plex Mono, monospace" font-size="9" fill="#9be3a8" opacity="0.95">
+                                <text x="50" y="58">∫ x² dx = x³/3 + C</text>
+                                <text x="70" y="103">solve(2x + 5 = 13)</text>
+                                <text x="210" y="148">→ x = 4</text>
+                            </g>
+                            <circle cx="380" cy="20" r="3" fill="#9be3a8" opacity="0.6"/>
+                            <circle cx="20" cy="160" r="3" fill="#9be3a8" opacity="0.6"/>
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <h3>AlgorIA — Educational AI Chatbot</h3>
+                        <span class="project-meta">Python | FastAPI • Anthropic SDK • Docker</span>
+                        <p class="project-desc">
+                            Can a multi-agent LLM system replicate the dialogic teaching of a real Algebra and Calculus professor? AlgorIA serves UAI students with subject-specialized agents and per-course knowledge bases. Migrated from a no-code platform to a custom FastAPI backend, validated by the Systems Engineering Director for integration into the program.
+                        </p>
+                        <div class="methods-section">
+                            <strong>Methods:</strong> Multi-agent architecture · LLM orchestration · Knowledge retrieval · Session management · Containerized deployment
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/AngeloVPerrotta/Chatbot-educativo-de-lgebra-con-IA---UAI" class="text-link" target="_blank" rel="noopener">[ View Code ]</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chess Robot -->
+                <div class="project-card">
+                    <div class="image-container">
+                        <svg class="visual-svg" viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="400" height="180" fill="#1a1a1a"/>
+                            <g transform="translate(120, 30)">
+                                <!-- 8x8 chessboard -->
+                                <g>
+                                    <rect x="0" y="0" width="120" height="120" fill="#3a3a3a"/>
+                                    <g fill="#e8b87a">
+                                        <rect x="0" y="0" width="15" height="15"/>
+                                        <rect x="30" y="0" width="15" height="15"/>
+                                        <rect x="60" y="0" width="15" height="15"/>
+                                        <rect x="90" y="0" width="15" height="15"/>
+                                        <rect x="15" y="15" width="15" height="15"/>
+                                        <rect x="45" y="15" width="15" height="15"/>
+                                        <rect x="75" y="15" width="15" height="15"/>
+                                        <rect x="105" y="15" width="15" height="15"/>
+                                        <rect x="0" y="30" width="15" height="15"/>
+                                        <rect x="30" y="30" width="15" height="15"/>
+                                        <rect x="60" y="30" width="15" height="15"/>
+                                        <rect x="90" y="30" width="15" height="15"/>
+                                        <rect x="15" y="45" width="15" height="15"/>
+                                        <rect x="45" y="45" width="15" height="15"/>
+                                        <rect x="75" y="45" width="15" height="15"/>
+                                        <rect x="105" y="45" width="15" height="15"/>
+                                        <rect x="0" y="60" width="15" height="15"/>
+                                        <rect x="30" y="60" width="15" height="15"/>
+                                        <rect x="60" y="60" width="15" height="15"/>
+                                        <rect x="90" y="60" width="15" height="15"/>
+                                        <rect x="15" y="75" width="15" height="15"/>
+                                        <rect x="45" y="75" width="15" height="15"/>
+                                        <rect x="75" y="75" width="15" height="15"/>
+                                        <rect x="105" y="75" width="15" height="15"/>
+                                        <rect x="0" y="90" width="15" height="15"/>
+                                        <rect x="30" y="90" width="15" height="15"/>
+                                        <rect x="60" y="90" width="15" height="15"/>
+                                        <rect x="90" y="90" width="15" height="15"/>
+                                        <rect x="15" y="105" width="15" height="15"/>
+                                        <rect x="45" y="105" width="15" height="15"/>
+                                        <rect x="75" y="105" width="15" height="15"/>
+                                        <rect x="105" y="105" width="15" height="15"/>
+                                    </g>
+                                </g>
+                                <!-- Bounding boxes (vision detection) -->
+                                <g fill="none" stroke="#4ec9ff" stroke-width="1.5">
+                                    <rect x="45" y="105" width="15" height="15"/>
+                                    <rect x="60" y="60" width="15" height="15" stroke-dasharray="3 2"/>
+                                </g>
+                            </g>
+                            <!-- Robotic arm hint -->
+                            <g stroke="#e74c3c" stroke-width="2" fill="none">
+                                <line x1="20" y1="160" x2="80" y2="120"/>
+                                <line x1="80" y1="120" x2="130" y2="90"/>
+                                <circle cx="20" cy="160" r="5" fill="#e74c3c"/>
+                                <circle cx="80" cy="120" r="3" fill="#e74c3c"/>
+                                <circle cx="130" cy="90" r="3" fill="#e74c3c"/>
+                            </g>
+                            <text x="20" y="20" font-family="IBM Plex Mono, monospace" font-size="9" fill="#4ec9ff">FEN → Stockfish → arm</text>
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <h3>Chess Robot — Vision-Guided Robotic System</h3>
+                        <span class="project-meta">Python | OpenCV • YOLO • Stockfish | Flask</span>
+                        <p class="project-desc">
+                            End-to-end pipeline that closes the loop from board recognition to physical move execution. Camera captures the board → OpenCV/YOLO detect pieces and squares → FEN encoding → Stockfish evaluates the position → robotic arm executes the move. Built at UAI's CAETI robotics lab under Prof. Néstor Balich.
+                        </p>
+                        <div class="methods-section">
+                            <strong>Methods:</strong> Computer Vision · Object Detection · FEN Encoding · Inverse Kinematics · Flask REST API · YouTube demo
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/AngeloVPerrotta/robot-ajedrecista-integracion-stockfish-y-python" class="text-link" target="_blank" rel="noopener">[ View Code ]</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vision Tracker -->
+                <div class="project-card">
+                    <div class="image-container">
+                        <svg class="visual-svg" viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="400" height="180" fill="#1a1a1a"/>
+                            <!-- Tracking trail -->
+                            <g fill="none" stroke="#7cf2c8" stroke-width="1.2" opacity="0.7">
+                                <path d="M 30 140 Q 100 80 180 100 T 360 60" stroke-dasharray="4 3"/>
+                            </g>
+                            <!-- Bounding boxes along the path -->
+                            <g fill="none" stroke="#7cf2c8" stroke-width="1.5">
+                                <rect x="20" y="125" width="22" height="22" opacity="0.4"/>
+                                <rect x="100" y="80" width="22" height="22" opacity="0.55"/>
+                                <rect x="180" y="92" width="22" height="22" opacity="0.7"/>
+                                <rect x="260" y="68" width="22" height="22" opacity="0.85"/>
+                                <rect x="345" y="50" width="22" height="22"/>
+                            </g>
+                            <!-- Center dots -->
+                            <g fill="#7cf2c8">
+                                <circle cx="31" cy="136" r="1.8" opacity="0.4"/>
+                                <circle cx="111" cy="91" r="1.8" opacity="0.55"/>
+                                <circle cx="191" cy="103" r="1.8" opacity="0.7"/>
+                                <circle cx="271" cy="79" r="1.8" opacity="0.85"/>
+                                <circle cx="356" cy="61" r="2.5"/>
+                            </g>
+                            <text x="20" y="20" font-family="IBM Plex Mono, monospace" font-size="9" fill="#7cf2c8">tracker.update(frame)</text>
+                            <text x="280" y="170" font-family="IBM Plex Mono, monospace" font-size="8" fill="#7cf2c8" opacity="0.6">conf: 0.94</text>
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <h3>Vision Tracker</h3>
+                        <span class="project-meta">Python | OpenCV</span>
+                        <p class="project-desc">
+                            Real-time object tracking module built for the CAETI robotics lab. Designed as a reusable component for downstream robotics applications — from vision-guided arms to autonomous navigation prototypes.
+                        </p>
+                        <div class="methods-section">
+                            <strong>Methods:</strong> Real-time tracking · OpenCV pipelines · Camera calibration · Modular architecture
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/AngeloVPerrotta/vision-tracker" class="text-link" target="_blank" rel="noopener">[ View Code ]</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DHT11 Environmental Monitor -->
+                <div class="project-card">
+                    <div class="image-container">
+                        <svg class="visual-svg" viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="400" height="180" fill="#1a1a1a"/>
+                            <!-- Grid -->
+                            <g stroke="#333" stroke-width="0.5">
+                                <line x1="0" y1="45" x2="400" y2="45"/>
+                                <line x1="0" y1="90" x2="400" y2="90"/>
+                                <line x1="0" y1="135" x2="400" y2="135"/>
+                            </g>
+                            <!-- Temperature wave -->
+                            <path d="M 0 100 Q 40 70 80 90 T 160 80 T 240 95 T 320 75 T 400 88" fill="none" stroke="#ff7e6b" stroke-width="2"/>
+                            <!-- Humidity wave -->
+                            <path d="M 0 50 Q 40 75 80 60 T 160 70 T 240 55 T 320 65 T 400 50" fill="none" stroke="#4ec9ff" stroke-width="2"/>
+                            <!-- Anomaly marker -->
+                            <circle cx="240" cy="95" r="6" fill="none" stroke="#ffd93d" stroke-width="2"/>
+                            <text x="248" y="115" font-family="IBM Plex Mono, monospace" font-size="8" fill="#ffd93d">! anomaly</text>
+                            <!-- Labels -->
+                            <text x="20" y="20" font-family="IBM Plex Mono, monospace" font-size="9" fill="#ff7e6b">temp °C</text>
+                            <text x="80" y="20" font-family="IBM Plex Mono, monospace" font-size="9" fill="#4ec9ff">humidity %</text>
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <h3>Environmental Monitor — DHT11 IoT Dashboard</h3>
+                        <span class="project-meta">Arduino | Python • FastAPI • SQLite • ML</span>
+                        <p class="project-desc">
+                            Can low-cost IoT data fuel real-time anomaly detection? A complete pipeline: a physical DHT11 sensor on Arduino streams temperature and humidity data through Python and FastAPI, persists to SQLite, and surfaces in a glassmorphism dashboard with Chart.js. ML layer flags anomalies live.
+                        </p>
+                        <div class="methods-section">
+                            <strong>Methods:</strong> Embedded Sensing · IoT Pipelines · REST APIs · Time-series Anomaly Detection · Live Dashboards
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/AngeloVPerrotta" class="text-link" target="_blank" rel="noopener">[ View Code ]</a>
+                            <a href="https://www.youtube.com/@angelovp505" class="text-link" target="_blank" rel="noopener">[ Watch Demo ]</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sistema de Compras -->
+                <div class="project-card">
+                    <div class="image-container">
+                        <svg class="visual-svg" viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="400" height="180" fill="#1a1a1a"/>
+                            <!-- Grid table -->
+                            <g stroke="#a060e8" stroke-width="0.8" fill="none" opacity="0.85">
+                                <rect x="40" y="30" width="320" height="120"/>
+                                <line x1="40" y1="55" x2="360" y2="55"/>
+                                <line x1="40" y1="80" x2="360" y2="80"/>
+                                <line x1="40" y1="105" x2="360" y2="105"/>
+                                <line x1="40" y1="130" x2="360" y2="130"/>
+                                <line x1="130" y1="30" x2="130" y2="150"/>
+                                <line x1="220" y1="30" x2="220" y2="150"/>
+                                <line x1="290" y1="30" x2="290" y2="150"/>
+                            </g>
+                            <g font-family="IBM Plex Mono, monospace" font-size="8" fill="#c8a8f0">
+                                <text x="50" y="46">PRODUCT</text>
+                                <text x="140" y="46">QTY</text>
+                                <text x="230" y="46">SUPPLIER</text>
+                                <text x="300" y="46">STATUS</text>
+                                <text x="50" y="71">harina</text>
+                                <text x="140" y="71">50kg</text>
+                                <text x="230" y="71">Molino S.A.</text>
+                                <text x="300" y="71">low!</text>
+                                <text x="50" y="96">azucar</text>
+                                <text x="140" y="96">120kg</text>
+                                <text x="230" y="96">Sucros</text>
+                                <text x="300" y="96">ok</text>
+                                <text x="50" y="121">huevos</text>
+                                <text x="140" y="121">200u</text>
+                                <text x="230" y="121">Avi-Hnos</text>
+                                <text x="300" y="121">ordered</text>
+                                <text x="50" y="146">leche</text>
+                                <text x="140" y="146">80L</text>
+                                <text x="230" y="146">La Serení</text>
+                                <text x="300" y="146">ok</text>
+                            </g>
+                            <!-- Flag for low stock -->
+                            <circle cx="320" cy="68" r="5" fill="#e74c3c" opacity="0.8"/>
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <h3>Sistema de Compras a Proveedores</h3>
+                        <span class="project-meta">C# | .NET Framework</span>
+                        <p class="project-desc">
+                            Academic project for automated supplier purchasing management. Detects low stock, generates purchase orders linked to suppliers by category, logs employees per operation, and produces spending reports. Built in a team using GitHub for version control. Delivered and approved.
+                        </p>
+                        <div class="methods-section">
+                            <strong>Methods:</strong> OOP Design · Inventory State Machines · Purchase Order Lifecycle · GitHub Workflow
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/AngeloVPerrotta" class="text-link" target="_blank" rel="noopener">[ View Code ]</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Algebra Game -->
+                <div class="project-card">
+                    <div class="image-container">
+                        <svg class="visual-svg" viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="400" height="180" fill="#1a1a1a"/>
+                            <g font-family="IBM Plex Serif, serif" font-size="32" fill="#ffd93d" opacity="0.7">
+                                <text x="40" y="70">∑</text>
+                                <text x="100" y="55">π</text>
+                                <text x="160" y="80">∞</text>
+                                <text x="220" y="60">√</text>
+                                <text x="280" y="90">∫</text>
+                                <text x="340" y="60">θ</text>
+                                <text x="60" y="130">α</text>
+                                <text x="130" y="150">≠</text>
+                                <text x="200" y="135">≤</text>
+                                <text x="270" y="155">±</text>
+                                <text x="330" y="130">Δ</text>
+                            </g>
+                            <!-- Center quiz card -->
+                            <g>
+                                <rect x="120" y="65" width="160" height="60" fill="#1a1a1a" stroke="#ffd93d" stroke-width="1.5"/>
+                                <text x="135" y="90" font-family="IBM Plex Mono, monospace" font-size="11" fill="#ffd93d">Q: 2x + 5 = 13</text>
+                                <text x="135" y="110" font-family="IBM Plex Mono, monospace" font-size="9" fill="#ffd93d" opacity="0.7">[A] x=4  [B] x=3  [C] x=5</text>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <h3>Algebra Game — First Exam Study Tool</h3>
+                        <span class="project-meta">JavaScript | HTML/CSS</span>
+                        <p class="project-desc">
+                            Gamified study tool for Algebra exam preparation, originally built as a class project and now used by other students for review. Quiz mechanics, score tracking, and reinforcement on key concepts. The dedicated landing page is live at ayga-primerparcial.com.
+                        </p>
+                        <div class="methods-section">
+                            <strong>Methods:</strong> Game design · Exercise gamification · Browser-based · Educational UX
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/AngeloVPerrotta/JUEGO-PRIMER-PARCIAL---ALGEBRA" class="text-link" target="_blank" rel="noopener">[ View Code ]</a>
+                            <a href="https://ayga-primerparcial.com/" class="text-link" target="_blank" rel="noopener">[ Live Site ]</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============== RESEARCH ============== -->
+        <section id="research">
+            <h2 class="section-title">Research &amp; Publications</h2>
+
+            <div class="research-list">
+
+                <div class="research-item">
+                    <h3>Del tablero al algoritmo</h3>
+                    <span class="award-institution">Universidad Abierta Interamericana</span>
+                    <span class="meta">Single-author · Self-taught from scratch</span>
+                    <span class="meta">Presented at CIITI 2025 (XXIII Congreso Internacional en Innovación Tecnológica Informática)</span>
+                    <p>
+                        Independent research paper exploring the intersection of chess and algorithmic reasoning. Built end-to-end — research, writing, and presentation — autonomously, and presented at the international congress hosted by UAI.
+                    </p>
+                    <div class="project-links">
+                        <a href="#" class="text-link" target="_blank" rel="noopener">[ Read Paper ]</a>
+                    </div>
+                </div>
+
+                <div class="research-item">
+                    <h3>Diversidad generacional en el ámbito laboral: definiciones, impactos y estrategias de integración</h3>
+                    <span class="award-institution">Universidad Abierta Interamericana</span>
+                    <span class="meta">Published on Zenodo · DOI: 10.5281/zenodo.16061610</span>
+                    <p>
+                        Academic paper on generational diversity in the workplace — definitions, impacts, and integration strategies. Open-access publication on Zenodo with assigned DOI.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://doi.org/10.5281/zenodo.16061610" class="text-link" target="_blank" rel="noopener">[ Read Paper ]</a>
+                    </div>
+                </div>
+
+                <div class="research-item">
+                    <h3>Two papers in development for publication on behalf of UAI</h3>
+                    <span class="award-institution">Universidad Abierta Interamericana</span>
+                    <span class="meta">Status: Active development · Titles to be announced</span>
+                    <p>
+                        Currently authoring two academic papers as part of my role as Academic Researcher at UAI. Both target peer-reviewed publication.
+                    </p>
+                    <div class="project-links">
+                        <a href="#" class="text-link">[ Updates soon ]</a>
+                    </div>
+                </div>
+
+                <div class="research-item">
+                    <h3>AlgorIA — Pedagogical Validation &amp; Institutional Integration</h3>
+                    <span class="award-institution">Universidad Abierta Interamericana</span>
+                    <span class="meta">Advisors: Director Monferrato (Systems Engineering)</span>
+                    <p>
+                        Educational chatbot validated by the Systems Engineering Director for incorporation into the Analista en Sistemas program, with potential to scale to UAI's Ultra virtual platform. Ongoing collaboration through the UAITECH entrepreneurship program to evaluate AlgorIA as an educational venture.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/AngeloVPerrotta/Chatbot-educativo-de-lgebra-con-IA---UAI" class="text-link" target="_blank" rel="noopener">[ View Project ]</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============== FREELANCE ============== -->
+        <section id="freelance">
+            <h2 class="section-title">Selected Freelance Web Work</h2>
+            <p style="margin-bottom: 1.5rem; color: #555; font-size: 0.95rem; max-width: 650px;">
+                Sites I designed and shipped end-to-end — from cold outreach and proposal to deployment, training, and post-launch support.
+            </p>
+
+            <div class="freelance-list">
+                <div class="freelance-item">
+                    <h4>Angelo Perrotta</h4>
+                    <span class="label">Personal portfolio</span>
+                    <a href="https://angeloperrotta.online/" target="_blank" rel="noopener">angeloperrotta.online ↗</a>
+                </div>
+                <div class="freelance-item">
+                    <h4>Gold Culture BSAS</h4>
+                    <span class="label">Cultural venue</span>
+                    <a href="https://goldculturebsas.com/" target="_blank" rel="noopener">goldculturebsas.com ↗</a>
+                </div>
+                <div class="freelance-item">
+                    <h4>Cultural de Banfield</h4>
+                    <span class="label">Community space</span>
+                    <a href="https://culturaldebanfield.com.ar/" target="_blank" rel="noopener">culturaldebanfield.com.ar ↗</a>
+                </div>
+                <div class="freelance-item">
+                    <h4>Pixelix Studio</h4>
+                    <span class="label">Design studio</span>
+                    <a href="https://pixelixstudio.com.ar/" target="_blank" rel="noopener">pixelixstudio.com.ar ↗</a>
+                </div>
+                <div class="freelance-item">
+                    <h4>AyGA Primer Parcial</h4>
+                    <span class="label">Academic landing</span>
+                    <a href="https://ayga-primerparcial.com/" target="_blank" rel="noopener">ayga-primerparcial.com ↗</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>2026 Angelo Perrotta · built with HTML &amp; CSS · layout inspired by <a href="https://fabiansteinmetz.github.io/" style="color:#888;border-bottom:1px solid #ccc;text-decoration:none;" target="_blank" rel="noopener">fabiansteinmetz.github.io</a></p>
+        </footer>
+
+    </div>
+</body>
+</html>
